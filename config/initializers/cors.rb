@@ -3,4 +3,4 @@ Rails.configuration.middleware.insert_before 0, "Rack::Cors" do
    origins '*'
    resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
  end
-end
+end 

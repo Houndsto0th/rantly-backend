@@ -1,5 +1,5 @@
 class RantsController < ApplicationController
-  before_filter :authenticate_user!, only: [:show, :create]
+  before_filter :authenticate_user!, only: [:create]
 
   def index
     render json: Rant.all
@@ -10,7 +10,7 @@ class RantsController < ApplicationController
   end
 
   def create
-    
+
   end
 
 
