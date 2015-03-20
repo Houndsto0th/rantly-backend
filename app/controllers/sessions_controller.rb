@@ -1,4 +1,6 @@
 class SessionsController < Devise::SessionsController
+  skip_before_filter :configure_permitted_parameters!
+  
   respond_to :html, :json
 
   def create
