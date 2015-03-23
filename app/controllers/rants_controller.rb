@@ -1,5 +1,5 @@
 class RantsController < ApplicationController
-  before_filter :authenticate_user!, only: [:delete]
+  skip_before_filter :authenticate_user!
 
   def index
     render json: Rant.all
@@ -18,10 +18,22 @@ class RantsController < ApplicationController
     end
   end
 
+  def update
+    @rant = Rant.find(params[:id])
+    if @rant.update(rant_params)
+      render json: @rant
+    end
+  end
+
+  def destroy
+    @rant = Rant.find(params[:id])
+    @rant.destroy
+    head :no_content
+  end
 
 
   private
   def rant_params
-    params.require(:rant).permit(:title, :body, :user, :user_id)
+    params.require(:rant).permit(:title, :body, :user, :user_id, :created_at)
   end
 end
