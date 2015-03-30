@@ -2,7 +2,12 @@ class RantsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    render json: Rant.all
+    if params[:query].present?
+      render json: Rant.where("title like ? OR body like ?", "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      render json: Rant.all
+    end
+
   end
 
   def show
